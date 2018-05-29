@@ -26,17 +26,20 @@ static void timespec_subtract (struct timespec *result, struct timespec *x, stru
     result->tv_nsec = x->tv_nsec - y->tv_nsec;
 }
 
-int Tic(struct timespec *time1)
+struct timespec Tic()
 {
-    return clock_gettime(CLOCK_MONOTONIC, time1);
+	struct timespec res;
+ 	clock_gettime(CLOCK_MONOTONIC, &res);
+	return res;
 }
 
-int Toc(struct timespec *time1, struct timespec *timeDifference)
+struct timespec Toc(struct timespec *time1)
 {
-    struct timespec time2;
-    int val = clock_gettime(CLOCK_MONOTONIC, &time2);
-    timespec_subtract(timeDifference, &time2, time1);
-    return val;
+    struct timespec time2, timeDifference;
+    clock_gettime(CLOCK_MONOTONIC, &time2);
+    timespec_subtract(&timeDifference, &time2, time1);
+	/*PrintToc(&timeDifference);*/
+    return timeDifference;
 }
 
 void PrintToc(struct timespec *t)
@@ -44,9 +47,3 @@ void PrintToc(struct timespec *t)
     printf("Elapsed time: %ld seconds, %ld microseconds\n", t->tv_sec, (long) t->tv_nsec);
 }
 
-void PrintElapsedTime(struct timespec *tStart)
-{
-    struct timespec tDifference;
-    Toc(tStart, &tDifference);
-    PrintToc(&tDifference);
-}
