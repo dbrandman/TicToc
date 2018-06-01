@@ -38,7 +38,6 @@ struct timespec Toc(struct timespec *time1)
     struct timespec time2, timeDifference;
     clock_gettime(CLOCK_MONOTONIC, &time2);
     timespec_subtract(&timeDifference, &time2, time1);
-	/*PrintToc(&timeDifference);*/
     return timeDifference;
 }
 

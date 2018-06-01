@@ -7,7 +7,7 @@
 #include <time.h>
 #include <sys/time.h>
 
-/** Store the current system time. */
+/** Return the current system time. */
 struct timespec Tic();
 
 /** Return time elapsed since call to Tic(). */
