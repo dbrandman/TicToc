@@ -1,8 +1,8 @@
 
 #include <stdio.h>
 #include <unistd.h>
-
 #include "Tictoc.h"
+
 int main()
 {
 	struct timespec time1, time2;
